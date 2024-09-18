@@ -6,16 +6,13 @@ return {
   -- change the command in the config to whatever the name of that colorscheme is.
   --
   -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-  'ellisonleao/gruvbox.nvim',
+  'rebelot/kanagawa.nvim',
   priority = 1000, -- Make sure to load this before all the other start plugins.
   config = true,
   init = function()
     -- Load the colorscheme here.
     vim.o.termguicolors = true
     vim.o.background = 'dark' -- or "light" for light mode
-    vim.cmd [[colorscheme gruvbox]]
-
-    -- You can configure highlights by doing something like:
-    vim.cmd.hi 'Comment gui=none'
+    vim.cmd [[colorscheme kanagawa]]
   end,
 }

@@ -19,12 +19,12 @@ return {
         -- `friendly-snippets` contains a variety of premade snippets.
         --    See the README about individual language/framework/plugin snippets:
         --    https://github.com/rafamadriz/friendly-snippets
-        -- {
-        --   'rafamadriz/friendly-snippets',
-        --   config = function()
-        --     require('luasnip.loaders.from_vscode').lazy_load()
-        --   end,
-        -- },
+        {
+          'rafamadriz/friendly-snippets',
+          config = function()
+            require('luasnip.loaders.from_vscode').lazy_load()
+          end,
+        },
       },
     },
     'saadparwaiz1/cmp_luasnip',
@@ -34,11 +34,14 @@ return {
     --  into multiple repos for maintenance purposes.
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
+    'onsails/lspkind.nvim', -- vs-code like pictograms
   },
   config = function()
     -- See `:help cmp`
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
+    local lspkind = require 'lspkind'
+
     luasnip.config.setup {}
 
     cmp.setup {
@@ -110,6 +113,12 @@ return {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'path' },
+      },
+      formatting = {
+        format = lspkind.cmp_format {
+          maxwidth = 50,
+          elipsis_char = '...',
+        },
       },
     }
   end,
