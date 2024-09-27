@@ -7,6 +7,7 @@ return {
     local treesitter = require 'nvim-treesitter.configs'
 
     -- configure treesitter
+    ---@diagnostic disable-next-line: missing-fields
     treesitter.setup {
       -- enable syntax highlighting
       highlight = {

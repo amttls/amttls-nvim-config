@@ -11,4 +11,5 @@ return {
   require 'custom.plugins.autotag',
   require 'custom.plugins.comments',
   require 'custom.plugins.file-operations',
+  require 'custom.plugins.greeter',
 }

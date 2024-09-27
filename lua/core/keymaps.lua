@@ -28,3 +28,5 @@ vim.keymap.set('i', 'jk', '<ESC>', { desc = 'Exit INSERT mode with jk' })
 vim.keymap.set('c', 'jk', '<ESC>', { desc = 'Exit COMMAND mode with jk' })
 -- Toggle Zen Mode
 vim.keymap.set('n', '<leader>tz', ':ZenMode<CR>', { desc = '[T]oggle [Z]en Mode' })
+-- Go to previous file with backspace
+vim.keymap.set('n', '<Tab>', '<C-^>', { desc = 'Go to previous file' })

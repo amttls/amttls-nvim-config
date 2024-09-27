@@ -13,6 +13,17 @@ return {
     -- Load the colorscheme here.
     vim.o.termguicolors = true
     vim.o.background = 'dark' -- or "light" for light mode
+    require('kanagawa').setup {
+      colors = {
+        theme = {
+          all = {
+            ui = {
+              bg_gutter = 'none',
+            },
+          },
+        },
+      },
+    }
     vim.cmd [[colorscheme kanagawa]]
   end,
 }
