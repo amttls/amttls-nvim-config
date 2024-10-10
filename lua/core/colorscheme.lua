@@ -1,5 +1,4 @@
 -- [[ colorscheme.lua  ]]
-
 return {
   -- You can easily change to a different colorscheme.
   -- Change the name of the colorscheme plugin below, and then
@@ -14,6 +13,8 @@ return {
     vim.o.termguicolors = true
     vim.o.background = 'dark' -- or "light" for light mode
     require('kanagawa').setup {
+      transparent = true,
+      statementStyle = { bold = false },
       colors = {
         theme = {
           all = {
@@ -23,7 +24,15 @@ return {
           },
         },
       },
+      overrides = function(colors)
+        local theme = colors.theme
+        return {
+          Boolean = { fg = theme.syn.constant, bold = false },
+          ['@lsp.typemod.function.readonly'] = { fg = theme.syn.fun, bold = false },
+        }
+      end,
     }
+
     vim.cmd [[colorscheme kanagawa]]
   end,
 }
