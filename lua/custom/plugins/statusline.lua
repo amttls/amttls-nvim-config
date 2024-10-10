@@ -12,33 +12,34 @@ return {
       yellow = '#DCA561',
       red = '#C34043',
       fg = '#DCD7BA',
-      bg = '#2A2A38',
+      dark_fg = '#000000',
+      bg = 'NONE',
       inactive_bg = '#16161D',
     }
 
     local my_lualine_theme = {
       normal = {
-        a = { bg = colors.blue, fg = colors.bg, gui = 'bold' },
+        a = { bg = colors.blue, fg = colors.dark_fg, gui = 'bold' },
         b = { bg = colors.bg, fg = colors.fg },
         c = { bg = colors.bg, fg = colors.fg },
       },
       insert = {
-        a = { bg = colors.green, fg = colors.bg, gui = 'bold' },
+        a = { bg = colors.green, fg = colors.dark_fg, gui = 'bold' },
         b = { bg = colors.bg, fg = colors.fg },
         c = { bg = colors.bg, fg = colors.fg },
       },
       visual = {
-        a = { bg = colors.violet, fg = colors.bg, gui = 'bold' },
+        a = { bg = colors.violet, fg = colors.dark_fg, gui = 'bold' },
         b = { bg = colors.bg, fg = colors.fg },
         c = { bg = colors.bg, fg = colors.fg },
       },
       command = {
-        a = { bg = colors.yellow, fg = colors.bg, gui = 'bold' },
+        a = { bg = colors.yellow, fg = colors.dark_fg, gui = 'bold' },
         b = { bg = colors.bg, fg = colors.fg },
         c = { bg = colors.bg, fg = colors.fg },
       },
       replace = {
-        a = { bg = colors.red, fg = colors.bg, gui = 'bold' },
+        a = { bg = colors.red, fg = colors.dark_fg, gui = 'bold' },
         b = { bg = colors.bg, fg = colors.fg },
         c = { bg = colors.bg, fg = colors.fg },
       },
@@ -53,8 +54,15 @@ return {
     lualine.setup {
       options = {
         theme = my_lualine_theme,
+        component_separators = { left = '', right = '' },
+        section_separators = { left = '', right = '' },
       },
       sections = {
+        lualine_b = {
+          { 'branch', icon = '' },
+          'diff',
+          'diagnostics',
+        },
         lualine_x = {
           {
             lazy_status.updates,
