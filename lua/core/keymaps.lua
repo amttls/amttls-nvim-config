@@ -30,6 +30,9 @@ vim.keymap.set('c', 'jk', '<ESC>', { desc = 'Exit COMMAND mode with jk' })
 vim.keymap.set('n', '<leader>tz', ':ZenMode<CR>', { desc = '[T]oggle [Z]en Mode' })
 -- Go to previous file with Tab
 vim.keymap.set('n', '<Tab>', '<C-^>', { desc = 'Go to previous file' })
+-- Move visually highlighted
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move selected lines up' })
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selected lines down' })
 -- Copy to clipboard
-vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Copy visual selected to clipboard' })
+vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Copy selected lines to clipboard' })
 vim.keymap.set('n', '<leader>y', '"+y', { desc = 'Copy to clipboard' })
