@@ -28,5 +28,8 @@ vim.keymap.set('i', 'jk', '<ESC>', { desc = 'Exit INSERT mode with jk' })
 vim.keymap.set('c', 'jk', '<ESC>', { desc = 'Exit COMMAND mode with jk' })
 -- Toggle Zen Mode
 vim.keymap.set('n', '<leader>tz', ':ZenMode<CR>', { desc = '[T]oggle [Z]en Mode' })
--- Go to previous file with backspace
+-- Go to previous file with Tab
 vim.keymap.set('n', '<Tab>', '<C-^>', { desc = 'Go to previous file' })
+-- Copy to clipboard
+vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Copy visual selected to clipboard' })
+vim.keymap.set('n', '<leader>y', '"+y', { desc = 'Copy to clipboard' })
