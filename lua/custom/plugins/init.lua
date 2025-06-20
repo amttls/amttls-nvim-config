@@ -6,7 +6,6 @@ return {
   'christoomey/vim-tmux-navigator', -- tmux & split window navigation
   require 'custom.plugins.trouble',
   require 'custom.plugins.tailwind',
-  require 'custom.plugins.lazygit',
   require 'custom.plugins.zen-mode',
   require 'custom.plugins.autotag',
   require 'custom.plugins.comments',
