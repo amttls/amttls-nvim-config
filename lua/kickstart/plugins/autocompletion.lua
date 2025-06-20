@@ -34,6 +34,8 @@ return {
     --  into multiple repos for maintenance purposes.
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
+    'hrsh7th/cmp-buffer', -- Add buffer completion
+    'kristijanhusak/vim-dadbod-completion', -- Add dadbod completion
     'onsails/lspkind.nvim', -- vs-code like pictograms
   },
   config = function()
@@ -113,6 +115,8 @@ return {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'path' },
+        { name = 'buffer' },
+        { name = 'vim-dadbod-completion' },
       },
       formatting = {
         format = lspkind.cmp_format {
@@ -121,5 +125,23 @@ return {
         },
       },
     }
+
+    -- SQL-specific completion setup
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = { 'sql', 'mysql', 'plsql' },
+      callback = function()
+        cmp.setup.buffer {
+          sources = cmp.config.sources {
+            { name = 'vim-dadbod-completion', priority = 1100 },
+            { name = 'buffer', priority = 1000 },
+            { name = 'path', priority = 900 },
+            { name = 'luasnip', priority = 800 },
+          },
+          completion = {
+            keyword_length = 1,
+          },
+        }
+      end,
+    })
   end,
 }

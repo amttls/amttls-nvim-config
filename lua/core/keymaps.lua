@@ -36,3 +36,20 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selected lines down'
 -- Copy to clipboard
 vim.keymap.set('v', '<leader>y', '"+y', { desc = 'Copy selected lines to clipboard' })
 vim.keymap.set('n', '<leader>y', '"+y', { desc = 'Copy to clipboard' })
+-- DBUI
+vim.keymap.set('n', '<leader>db', function()
+  local current_buf = vim.api.nvim_get_current_buf()
+  local bufname = vim.api.nvim_buf_get_name(current_buf)
+
+  if string.match(bufname, 'dbui') then
+    -- If we're in DBUI, go back to previous buffer
+    vim.cmd 'buffer #'
+  else
+    -- If not in DBUI, open it and make it take full window
+    vim.cmd 'DBUI'
+    vim.cmd 'only' -- Close all other windows, making DBUI fullscreen
+  end
+end, { desc = 'Toggle DBUI fullscreen' })
+vim.keymap.set('n', '<leader>df', ':DBUIFindBuffer<CR>', { desc = 'Find DB buffer' })
+vim.keymap.set('n', '<leader>dr', ':DBUIRenameBuffer<CR>', { desc = 'Rename DB buffer' })
+vim.keymap.set('n', '<leader>dq', ':DBUILastQueryInfo<CR>', { desc = 'Last query info' })
