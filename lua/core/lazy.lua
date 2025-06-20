@@ -73,9 +73,6 @@ require('lazy').setup({
   -- autopairs
   require 'kickstart.plugins.autopairs',
 
-  -- Neo-tree is a Neovim plugin to browse the file system
-  require 'kickstart.plugins.neo-tree',
-
   -- Adds git related signs to the gutter, as well as utilities for managing changes
   require 'kickstart.plugins.gitsigns',
 
