@@ -64,7 +64,7 @@ return {
       { '<leader>w', group = '[W]orkspace' },
       { '<leader>t', group = '[T]oggle' },
       { '<leader>g', group = '[G]it Hunk', mode = { 'n', 'v' } },
-      { '<leader>a', group = '[A]vante', mode = { 'n' } },
+      { '<leader>h', group = '[H]arpoon', mode = { 'n', 'v' } },
       { '<leader>x', group = 'Diagnostics', mode = { 'n' } },
     },
   },
