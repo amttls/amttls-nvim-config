@@ -40,6 +40,21 @@ return {
     -- If you're wondering about lsp vs treesitter, you can check out the wonderfully
     -- and elegantly composed help section, `:help lsp-vs-treesitter`
 
+    local util = require 'lspconfig.util'
+
+    -- helper that works for plain repos *and* Turborepo/PNPM/Yarn workspaces
+    local function eslint_root(fname)
+      return util.root_pattern( -- stop as soon as we hit any of these
+        'eslint.config.js',
+        '.eslintrc.js',
+        'turbo.json',
+        'pnpm-workspace.yaml',
+        'yarn.lock',
+        'package.json',
+        '.git'
+      )(fname)
+    end
+
     --  This function gets run when an LSP attaches to a particular buffer.
     --    That is to say, every time a new file is opened that is associated with
     --    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
@@ -193,6 +208,26 @@ return {
             -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
             diagnostics = { disable = { 'missing-fields' } },
           },
+        },
+      },
+
+      eslint = {
+        root_dir = eslint_root,
+        --- filetypes to attach to (so we can drop nvim-lint for those)
+        filetypes = {
+          'javascript',
+          'javascriptreact',
+          'typescript',
+          'typescriptreact',
+          'vue',
+          'svelte',
+          'astro',
+        },
+        settings = {
+          -- new flat config needs this flag
+          experimental = { useFlatConfig = true },
+          -- “auto” tells the LS to move cwd to the folder that *owns* the config
+          workingDirectory = { mode = 'auto' }, -- :contentReference[oaicite:1]{index=1}
         },
       },
     }
