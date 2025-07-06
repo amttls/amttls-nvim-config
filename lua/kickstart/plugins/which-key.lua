@@ -66,6 +66,11 @@ return {
       { '<leader>g', group = '[G]it Hunk', mode = { 'n', 'v' } },
       { '<leader>h', group = '[H]arpoon', mode = { 'n', 'v' } },
       { '<leader>x', group = 'Diagnostics', mode = { 'n' } },
+      { '<leader>1', hidden = true },
+      { '<leader>2', hidden = true },
+      { '<leader>3', hidden = true },
+      { '<leader>4', hidden = true },
+      { '<leader>5', hidden = true },
     },
   },
 }
