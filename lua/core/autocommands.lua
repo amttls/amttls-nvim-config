@@ -11,3 +11,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
+
+-- Set filetype for .env.* files
+vim.api.nvim_create_autocmd({'BufRead', 'BufNewFile'}, {
+  pattern = '.env.*',
+  callback = function()
+    vim.bo.filetype = 'sh'
+  end,
+})
