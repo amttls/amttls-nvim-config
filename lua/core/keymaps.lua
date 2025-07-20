@@ -53,3 +53,29 @@ end, { desc = 'Toggle DBUI fullscreen' })
 vim.keymap.set('n', '<leader>df', ':DBUIFindBuffer<CR>', { desc = 'Find DB buffer' })
 vim.keymap.set('n', '<leader>dr', ':DBUIRenameBuffer<CR>', { desc = 'Rename DB buffer' })
 vim.keymap.set('n', '<leader>dq', ':DBUILastQueryInfo<CR>', { desc = 'Last query info' })
+
+-- Git Fugitive Toggle
+vim.keymap.set('n', '<leader>gg', function()
+  local current_buf = vim.api.nvim_get_current_buf()
+  local bufname = vim.api.nvim_buf_get_name(current_buf)
+
+  if string.match(bufname, 'fugitive://') then
+    -- If we're in fugitive, close the tab or go back
+    if vim.fn.tabpagenr '$' > 1 then
+      vim.cmd 'tabclose'
+    else
+      -- Find a normal buffer to switch to
+      for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+        if vim.api.nvim_buf_is_loaded(buf) and not string.match(vim.api.nvim_buf_get_name(buf), 'fugitive://') then
+          vim.cmd('buffer ' .. buf)
+          return
+        end
+      end
+      -- If no other buffer exists, create a new one
+      vim.cmd 'enew'
+    end
+  else
+    -- If not in fugitive, open it in a new tab
+    vim.cmd 'tab G'
+  end
+end, { desc = 'Toggle Git status fullscreen' })
