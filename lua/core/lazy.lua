@@ -38,6 +38,11 @@ require('lazy').setup({
   -- Main LSP Configuration
   require 'core.lsp',
 
+  -- Main Debug Config
+  require 'core.dap',
+
+  -- Kickstart Plugins
+
   -- Detect tabstop and shiftwidth automatically
   require 'kickstart.plugins.vim-sleuth',
 
@@ -61,8 +66,6 @@ require('lazy').setup({
 
   -- Highlight, edit, and navigate code
   require 'kickstart.plugins.treesitter',
-
-  -- require 'kickstart.plugins.debug',
 
   -- Add indentation guides even on blank lines
   require 'kickstart.plugins.indent_line',
