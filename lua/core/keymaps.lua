@@ -59,23 +59,14 @@ vim.keymap.set('n', '<leader>gg', function()
   local current_buf = vim.api.nvim_get_current_buf()
   local bufname = vim.api.nvim_buf_get_name(current_buf)
 
-  if string.match(bufname, 'fugitive://') then
-    -- If we're in fugitive, close the tab or go back
-    if vim.fn.tabpagenr '$' > 1 then
-      vim.cmd 'tabclose'
-    else
-      -- Find a normal buffer to switch to
-      for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.api.nvim_buf_is_loaded(buf) and not string.match(vim.api.nvim_buf_get_name(buf), 'fugitive://') then
-          vim.cmd('buffer ' .. buf)
-          return
-        end
-      end
-      -- If no other buffer exists, create a new one
-      vim.cmd 'enew'
-    end
+  if string.match(bufname, 'fugitive') then
+    -- If we're in fugitive, close the buffer
+    vim.cmd 'bdelete'
   else
-    -- If not in fugitive, open it in a new tab
-    vim.cmd 'tab G'
+    -- If not in fugitive, open it in a new buffer (preserves alternate file)
+    vim.cmd 'enew'
+    vim.cmd 'setlocal bufhidden=wipe'
+    vim.cmd 'Git'
+    vim.cmd 'only' -- Close all other windows, making fugitive fullscreen
   end
-end, { desc = 'Toggle Git status fullscreen' })
+end, { desc = 'Toggle Git status' })
