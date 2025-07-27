@@ -37,6 +37,7 @@ return {
         'query',
         'vimdoc',
         'c',
+        'cpp',
       },
       auto_install = true,
       incremental_selection = {
